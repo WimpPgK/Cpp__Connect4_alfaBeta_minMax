@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <QMessageBox>
-#include "minmax.h"
+#include "sztucznaInteligencja.h"
 #include <QApplication>
 #include <string>
 
@@ -94,7 +94,7 @@ void MainWindow::rozpocznijGre()
 
     srand(time(NULL));
     QString komunikat = "Ruch gracza ";
-    ui->label_turaGracza->setText(komunikat + QString::number(o1.turaGracza));
+    ui->label_turaGracza->setText(komunikat + QString::number(silnikGry.turaGracza));
 
     //o1.wypiszPlansze();
     //o1.rozgrywka();
@@ -114,16 +114,16 @@ void MainWindow::wyswietlPlansze()
     {
         for (int j = 0; j < m; j++)
         {
-            if (o1.plansza[i][j] == -1)
+            if (silnikGry.plansza[i][j] == -1)
             {
                 tab[i][j]->setPixmap(wolnePole.scaled(skalaGrafikiX, skalaGrafikiY, Qt::IgnoreAspectRatio));
 
             }
-            else if(o1.plansza[i][j] == 1)
+            else if(silnikGry.plansza[i][j] == 1)
             {
                 tab[i][j]->setPixmap(gracz01.scaled(skalaGrafikiX, skalaGrafikiY, Qt::IgnoreAspectRatio));
             }
-            else if(o1.plansza[i][j] == 2)
+            else if(silnikGry.plansza[i][j] == 2)
             {
                 tab[i][j]->setPixmap(gracz02.scaled(skalaGrafikiX, skalaGrafikiY, Qt::IgnoreAspectRatio));
             }
@@ -141,23 +141,20 @@ MainWindow::~MainWindow()
 
 int MainWindow::sprawdzStanGry()
 {
-    int flaga = o1.sprawdzStanGry();
+    int flaga = silnikGry.sprawdzStanGry();
     if(flaga == 1)
     {
         QMessageBox::StandardButton reply = QMessageBox::information(this, "Wynik gry", "Wygrywa gracz 1");
-        cout << "Zwyciesca sprawdzil  " << licznikRuchow << "kombinacji " << endl;
         resetRozgrywki();
     }
     if(flaga == 2)
     {
         QMessageBox::StandardButton reply = QMessageBox::information(this, "Wynik gry", "Wygrywa gracz 2");
-        cout << "Zwyciesca sprawdzil  " << licznikRuchow << "kombinacji " << endl;
         resetRozgrywki();
     }
     if(flaga == 3)
     {
         QMessageBox::StandardButton reply = QMessageBox::information(this, "Wynik gry", "Remis - plansza została zapełniona");
-        //cout << "Zwyciesca sprawdzil  " << licznikRuchow << "kombinacji " << endl;
         resetRozgrywki();
     }
     return flaga;
@@ -165,48 +162,46 @@ int MainWindow::sprawdzStanGry()
 }
 void MainWindow::resetRozgrywki()
 {
-    o1.resetRozgrywki();
+    silnikGry.resetRozgrywki();
     wyswietlPlansze();
     QString komunikat = "Ruch gracza ";
-    ui->label_turaGracza->setText(komunikat + QString::number(o1.turaGracza));
+    ui->label_turaGracza->setText(komunikat + QString::number(silnikGry.turaGracza));
 }
 
 void MainWindow::on_button00_clicked()
 {
-    o1.ruchGracza(0);
+    silnikGry.ruchGracza(0);
     wyswietlPlansze();
     sprawdzStanGry();
     QString komunikat = "Ruch gracza ";
-    ui->label_turaGracza->setText(komunikat + QString::number(o1.turaGracza));
+    ui->label_turaGracza->setText(komunikat + QString::number(silnikGry.turaGracza));
     if(flagaTrybGry == 2)
     {
         kolejnyRuchAI(false);
     }
 
 }
-
 
 void MainWindow::on_button01_clicked()
 {
-    o1.ruchGracza(1);
+    silnikGry.ruchGracza(1);
     wyswietlPlansze();
     sprawdzStanGry();
     QString komunikat = "Ruch gracza ";
-    ui->label_turaGracza->setText(komunikat + QString::number(o1.turaGracza));
+    ui->label_turaGracza->setText(komunikat + QString::number(silnikGry.turaGracza));
     if(flagaTrybGry == 2)
     {
         kolejnyRuchAI(false);
     }
 }
 
-
 void MainWindow::on_button02_clicked()
 {
-    o1.ruchGracza(2);
+    silnikGry.ruchGracza(2);
     wyswietlPlansze();
     sprawdzStanGry();
     QString komunikat = "Ruch gracza ";
-    ui->label_turaGracza->setText(komunikat + QString::number(o1.turaGracza));
+    ui->label_turaGracza->setText(komunikat + QString::number(silnikGry.turaGracza));
     if(flagaTrybGry == 2)
     {
         kolejnyRuchAI(false);
@@ -215,11 +210,11 @@ void MainWindow::on_button02_clicked()
 
 void MainWindow::on_button03_clicked()
 {
-    o1.ruchGracza(3);
+    silnikGry.ruchGracza(3);
     wyswietlPlansze();
     sprawdzStanGry();
     QString komunikat = "Ruch gracza ";
-    ui->label_turaGracza->setText(komunikat + QString::number(o1.turaGracza));
+    ui->label_turaGracza->setText(komunikat + QString::number(silnikGry.turaGracza));
     if(flagaTrybGry == 2)
     {
         kolejnyRuchAI(false);
@@ -228,11 +223,11 @@ void MainWindow::on_button03_clicked()
 
 void MainWindow::on_button04_clicked()
 {
-    o1.ruchGracza(4);
+    silnikGry.ruchGracza(4);
     wyswietlPlansze();
     sprawdzStanGry();
     QString komunikat = "Ruch gracza ";
-    ui->label_turaGracza->setText(komunikat + QString::number(o1.turaGracza));
+    ui->label_turaGracza->setText(komunikat + QString::number(silnikGry.turaGracza));
     if(flagaTrybGry == 2)
     {
         kolejnyRuchAI(false);
@@ -241,11 +236,11 @@ void MainWindow::on_button04_clicked()
 
 void MainWindow::on_button05_clicked()
 {
-    o1.ruchGracza(5);
+    silnikGry.ruchGracza(5);
     wyswietlPlansze();
     sprawdzStanGry();
     QString komunikat = "Ruch gracza ";
-    ui->label_turaGracza->setText(komunikat + QString::number(o1.turaGracza));
+    ui->label_turaGracza->setText(komunikat + QString::number(silnikGry.turaGracza));
     if(flagaTrybGry == 2)
     {
         kolejnyRuchAI(false);
@@ -254,32 +249,23 @@ void MainWindow::on_button05_clicked()
 
 void MainWindow::on_button06_clicked()
 {
-    o1.ruchGracza(6);
+    silnikGry.ruchGracza(6);
     wyswietlPlansze();
     sprawdzStanGry();
     QString komunikat = "Ruch gracza ";
-    ui->label_turaGracza->setText(komunikat + QString::number(o1.turaGracza));
+    ui->label_turaGracza->setText(komunikat + QString::number(silnikGry.turaGracza));
     if(flagaTrybGry == 2)
     {
         kolejnyRuchAI(false);
     }
 }
 
-void MainWindow::on_button_podpowiedz_clicked()
-{
-    MinMax m1;
-    //cout << "teraz gra gracz" << o1.turaGracza << endl;
-    int pom = m1.findBestMove(o1.plansza, o1.turaGracza, o1.poprzedniRuch_x, o1.poprzedniRuch_y, &licznikRuchow);
-    o1.ruchGracza(pom);
-
-    //playerMove(pom[0], pom[1]);
-    wyswietlPlansze();
-    sprawdzStanGry();
-    //checkGameState();
-}
 
 void MainWindow::on_pushButton_start_clicked()
 {
+    /*
+        pobieramy wszystkie dane z interfejsu w celu pozniejszego ich obslozenia w funkcji zarzadzajRozgrywka
+    */
     QString QString_trybRozgrywki = ui->comboBox_trybRozgrywki->currentText();
     string trybRozgrywki1 = QString_trybRozgrywki.toLocal8Bit().constData();
 
@@ -304,8 +290,6 @@ void MainWindow::on_pushButton_start_clicked()
 
 void MainWindow::zarzadzajRozgrywka(string trybRozgrywki,string alfaBeta_1, string poziomTrudnosci_1,string heurystykaOceny_1,string alfaBeta_2,string poziomTrudnosci_2,string heurystykaOceny_2)
 {
-    MinMax m1;
-    int flagaTrybuRozgrywki;
 
     if(alfaBeta_1 == "Alfa-Beta")
     {
@@ -328,7 +312,7 @@ void MainWindow::zarzadzajRozgrywka(string trybRozgrywki,string alfaBeta_1, stri
     flagaPoziomTrudnosci_1 = stoi(poziomTrudnosci_1);
     flagaPoziomTrudnosci_2 = stoi(poziomTrudnosci_2);
     flagaHeurystyka_1 = stoi(heurystykaOceny_1);
-    flagaHeurystyka_1 = stoi(heurystykaOceny_2);
+    flagaHeurystyka_2 = stoi(heurystykaOceny_2);
 
 
 
@@ -346,11 +330,6 @@ void MainWindow::zarzadzajRozgrywka(string trybRozgrywki,string alfaBeta_1, stri
         AIvsAI();
     }
 
-
-
-
-    //Alfa-Beta
-    //Min-Max*/
 }
 
 void MainWindow::AIvsAI()
@@ -360,7 +339,6 @@ void MainWindow::AIvsAI()
     {
         int flaga = kolejnyRuchAI(true);
         qApp->processEvents();
-        //cout << "Ruch wykonany" << endl;
         if(flaga  == 1 || flaga  == 2 || flaga  == 3)
         {
             break;
@@ -371,19 +349,15 @@ void MainWindow::AIvsAI()
 int MainWindow::kolejnyRuchAI(bool AIAI)
 {
     wyswietlPlansze();
-    MinMax m1;
+    SztucznaInteligencja m1;
     if(AIAI == true)
-    {   //cout << "IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII" << endl;
-        if(o1.turaGracza == 1)
+    {
+        if(silnikGry.turaGracza == 1)
         {
-
-            //cout << "Gracz1***********************************************" << endl;
             m1.ustawFlagi(flagaAlfaBeta_1, flagaPoziomTrudnosci_1, flagaHeurystyka_1);
         }
         else
         {
-            //cout << "Gracz2***********************************************" << endl;
-            //cout << "Gracz2" << endl;
             m1.ustawFlagi(flagaAlfaBeta_2, flagaPoziomTrudnosci_2, flagaHeurystyka_2);
         }
     }
@@ -392,13 +366,10 @@ int MainWindow::kolejnyRuchAI(bool AIAI)
         m1.ustawFlagi(flagaAlfaBeta_1, flagaPoziomTrudnosci_1, flagaHeurystyka_1);
     }
 
-    //cout << "teraz gra gracz" << o1.turaGracza << endl;
-    int pom = m1.findBestMove(o1.plansza, o1.turaGracza, o1.poprzedniRuch_x, o1.poprzedniRuch_y, &licznikRuchow);
-    o1.ruchGracza(pom);
-
-    //playerMove(pom[0], pom[1]);
+    int pom = m1.znajdzNajlepszyRuch(silnikGry.plansza, silnikGry.turaGracza, silnikGry.poprzedniRuch_x, silnikGry.poprzedniRuch_y);
+    silnikGry.ruchGracza(pom);
     wyswietlPlansze();
     int flaga = sprawdzStanGry();
     return flaga;
-    //checkGameState();
+
 }

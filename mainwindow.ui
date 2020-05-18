@@ -459,19 +459,6 @@
      </item>
     </layout>
    </widget>
-   <widget class="QPushButton" name="button_podpowiedz">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>620</y>
-      <width>261</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Podpowiedz ruch</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_45">
     <property name="geometry">
      <rect>
@@ -590,10 +577,20 @@
           <string>2</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>3</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item row="2" column="1">
        <widget class="QComboBox" name="comboBox_poziomTrudnosci_1">
+        <item>
+         <property name="text">
+          <string>8</string>
+         </property>
+        </item>
         <item>
          <property name="text">
           <string>9</string>
@@ -612,6 +609,26 @@
         <item>
          <property name="text">
           <string>12</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>13</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>14</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>15</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>16</string>
          </property>
         </item>
         <item>

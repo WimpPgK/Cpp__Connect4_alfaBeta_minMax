@@ -5,6 +5,9 @@ using namespace std;
 
 SilnikGry::SilnikGry()
 {
+    /*
+        Alokujemy pamiec dla planszy i uzupelniamy plansze wartosciami poczatkowymi -1
+    */
 	plansza = new int* [n];
 	for (int i = 0; i < n; i++)
 	{
@@ -18,7 +21,11 @@ SilnikGry::SilnikGry()
 			plansza[i][j] = -1;
 		}
 	}
-    //turaGracza = rand()%1 + 1;
+
+    /*
+        ustalamy ze rozgrywke zaczyna gracz 1 i ustawiamy sztucznie poprzedni ruch AI, zeby poprawnie mogl
+        dzialac algorytm zawezania dziedziny
+    */
     turaGracza = 1;
     poprzedniRuch_x = 3;
     poprzedniRuch_y = 3;
@@ -29,6 +36,8 @@ void SilnikGry::ruchGracza(int pozycja_x)
 {
     /*
        zaktualizowanie planszy poprzez zapisanie ruchu
+       w petli schodzimy tak gleboko az znajdziemy pierwsze wolne miejsce gdzie mozemy
+       umiescic nasz zeton
     */
     for (int i = n - 1; i >= 0; i--)
     {
@@ -72,10 +81,8 @@ int SilnikGry::sprawdzStanGry()
         return 3;
     }
     return 0;
-
-
-
 }
+
 int SilnikGry::sprawdzZwyciestwo()
 {
 
@@ -89,6 +96,11 @@ int SilnikGry::sprawdzZwyciestwo()
 		
 		for (int j = 0; j < m; j++)
 		{	
+
+            /*
+                zliczamy ile jest zetonow gracza w poziomie pod rzad
+            */
+
 			// sprawdzanie dla gracza 1
 			if (plansza[i][j] == 1)
 			{
@@ -124,7 +136,8 @@ int SilnikGry::sprawdzZwyciestwo()
 		pomGracz2 = 0;
 	}
 	
-	/*
+
+    /*
 		sprawdzenie czy jest wygrany w pionie
 	*/
 	pomGracz1 = 0;
@@ -171,7 +184,6 @@ int SilnikGry::sprawdzZwyciestwo()
 	/*
 		sprawdzenie, czy jest wygrany po skosie "funkcja malejaca y = -x"
 	*/
-	
 	pomGracz1 = 0;
 	pomGracz2 = 0;
 	for (int i = 0; i < n; i++)
@@ -213,14 +225,10 @@ int SilnikGry::sprawdzZwyciestwo()
 					pomGracz2++;
 					pomY++;
 					pomX++;
-					//cout << "Gracz2 - pozycja " << pomY << "  " << pomX << "  " << pomGracz1 << endl;
 
 				}
-				//cout << endl << endl;
 				if (pomGracz2 >= 4)
 				{	
-					//cout << "Ten warunek sie zjebal" << endl;
-
 					return 2;
 				}
 			}
@@ -231,9 +239,8 @@ int SilnikGry::sprawdzZwyciestwo()
 
 	
 	/*
-	sprawdzenie, czy jest wygrany po skosie "funkcja rosnaca y = x"
+        sprawdzenie, czy jest wygrany po skosie "funkcja rosnaca y = x"
 	*/
-
 	pomGracz1 = 0;
 	pomGracz2 = 0;
 	for (int i = 0; i < n; i++)
@@ -254,9 +261,7 @@ int SilnikGry::sprawdzZwyciestwo()
 					pomGracz1++;
 					pomY++;
 					pomX--;
-					//cout << "Gracz1 - pozycja " << pomY << "  " << pomX << "  " << pomGracz1 << endl;
 				}
-				//cout << endl << endl;
 				if (pomGracz1 >= 4)
 				{
 					return 1;
@@ -275,15 +280,11 @@ int SilnikGry::sprawdzZwyciestwo()
 					pomGracz2++;
 					pomY++;
 					pomX--;
-					//cout << "Gracz2 - pozycja " << pomY << "  " << pomX << "  " << pomGracz1 << endl;
 
 				}
-				//cout << endl << endl;
 				if (pomGracz2 >= 4)
 				{
-					//cout << "Ten warunek sie zjebal" << endl;
-
-					return 2;
+                    return 2;
 				}
 			}
 		}
@@ -296,7 +297,9 @@ int SilnikGry::sprawdzZwyciestwo()
 
 void SilnikGry::resetRozgrywki()
 {
-    //turaGracza = rand()%1 + 1;
+    /*
+        resetujemy plansze ustawiajac wszedzie wartosc -1 i ustalamy kto bedzie rozpoczynac rozgrywke
+    */
     turaGracza = 1;
     for (int i = 0; i < n; i++)
     {
@@ -325,7 +328,6 @@ bool SilnikGry::planszaJestPelna()
 			break;
 		}
 	}
-
 	return planszaPelna;
 }
 

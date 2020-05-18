@@ -16,20 +16,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    losowaniebezpowtorzen.cpp \
     main.cpp \
     mainwindow.cpp \
-    minmax.cpp \
-    silnikgry.cpp
+    silnikgry.cpp \
+    sztucznaInteligencja.cpp
 
 HEADERS += \
+    losowaniebezpowtorzen.h \
     mainwindow.h \
-    minmax.h \
-    silnikgry.h
+    silnikgry.h \
+    sztucznaInteligencja.h
 
 FORMS += \
     mainwindow.ui
 
 # Default rules for deployment.
+QMAKE_CXXFLAGS += -O1
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target

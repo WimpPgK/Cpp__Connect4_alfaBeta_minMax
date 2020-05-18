@@ -5,8 +5,8 @@
 #include <QPixmap>
 #include "ui_mainwindow.h"
 #include "silnikgry.h"
-#include "minmax.h"
-#include <iostream>;
+#include "sztucznaInteligencja.h"
+#include <iostream>
 
 
 QT_BEGIN_NAMESPACE
@@ -30,6 +30,10 @@ public:
     void AIvsAI();
 
     ~MainWindow();
+    /*
+        NALEZY WSTAWIC SCIEZKI BEZWZGLEDNE DO PLIKOW
+
+    */
     QString sciezkaGrafikaWolnePole = "E:/Dropbox/InneProjekty/006_/Programy/GUI/Connect4/Graphic/001.jpg";
     QString sciezkaGrafikaGracz01 = "E:/Dropbox/InneProjekty/006_/Programy/GUI/Connect4/Graphic/002.jpg";
     QString sciezkaGrafikaGracz02 = "E:/Dropbox/InneProjekty/006_/Programy/GUI/Connect4/Graphic/003.jpg";
@@ -50,8 +54,8 @@ public:
 
 
     QLabel* tab[n][m];
-    SilnikGry o1;
-    MinMax m1;
+    SilnikGry silnikGry;
+    SztucznaInteligencja m1;
 
 
 private slots:
@@ -69,7 +73,6 @@ private slots:
 
     void on_button06_clicked();
 
-    void on_button_podpowiedz_clicked();
 
     void on_pushButton_start_clicked();
 
